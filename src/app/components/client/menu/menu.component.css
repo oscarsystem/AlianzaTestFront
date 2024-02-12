@@ -1,0 +1,36 @@
+.main-body{
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 95%;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.contLeft{
+    padding-right: 2%;
+}
+
+.contRight{
+    padding: 1%;
+}
+
+.example-container{
+    height: 100vh;
+    min-height: 100vh;
+}
+
+::ng-deep .mat-list-item a[matLine] {
+    text-decoration: none !important;
+  }
+
+  ::ng-deep .example-container .mat-list-item a[matLine] {
+  text-decoration: none !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px !important;
+}
+
+::ng-deep .mat-mdc-form-field-flex {
+    margin-top: -7px !important;
+}

@@ -1,0 +1,53 @@
+<div class="divSearch">
+    <form>
+        <div mat-dialog-content class="content">
+    
+            <div class="row">
+                <mat-label>Name</mat-label>
+                <mat-form-field appearance="fill" >
+                    <input matInput name="names" [(ngModel)]="clientSearch.names" >
+                </mat-form-field>
+                
+                <mat-label>Phone</mat-label>
+                <mat-form-field appearance="fill" >
+                    <input matInput name="phone" [(ngModel)]="clientSearch.phone" >
+                </mat-form-field>
+            </div>
+        
+            <div class="row">
+                <mat-label>Email</mat-label>
+                <mat-form-field class="example-full-width">
+                    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="clientSearch.email" >
+                    <mat-error *ngIf="emailFormControl.hasError('email')">
+                      Enter valid email
+                    </mat-error>
+                  </mat-form-field>              
+                <mat-label>Start Date</mat-label>
+                <mat-form-field appearance="fill" >
+                    <input matInput [matDatepicker]="pickerAdd" name="dateAdd" [(ngModel)]="clientSearch.dateAdd" required >
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerAdd"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerAdd></mat-datepicker>     
+                </mat-form-field>
+            </div>  
+        
+            <div class="row">
+                <mat-label>End Date</mat-label>
+                <mat-form-field appearance="fill" >                
+                    <input matInput [matDatepicker]="pickerEnd" name="dateEnd" [(ngModel)]="clientSearch.dateEnd" >
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerEnd></mat-datepicker> 
+                </mat-form-field>
+            </div>  
+    
+        </div>
+        
+        <div mat-dialog-actions class="action">
+            <button mat-raised-button color="primary" type="submit" (click)="searchClient()" 
+            [disabled]="!clientSearch.names && !clientSearch.email && !clientSearch.phone && !clientSearch.dateAdd
+                && !clientSearch.dateEnd || (emailFormControl.hasError('email'))">
+            Ok
+            </button>
+        </div>    
+    
+    </form>
+</div>

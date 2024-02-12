@@ -1,0 +1,72 @@
+<div mat-dialog-title>
+    <h1>Create New client</h1>
+</div>
+<form>
+    <div mat-dialog-content class="content">
+
+        <div class="row">
+            <mat-label>Name:*</mat-label>
+            <mat-form-field appearance="fill" >
+                <input matInput name="names" [(ngModel)]="clientCreate.names" required >
+                <mat-error *ngIf="requeridoFormControl.hasError('required')">
+                  Name is <strong>requerid</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="row">
+            <mat-label>Phone:*</mat-label>
+            <mat-form-field appearance="fill" >
+                <input matInput name="phone" [(ngModel)]="clientCreate.phone" required >       
+                <mat-error *ngIf="requeridoFormControl.hasError('required')">
+                    Phone is <strong>requerid</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>  
+    
+        <div class="row">
+            <mat-label>Email:*</mat-label>
+            <mat-form-field class="example-full-width">
+                <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="clientCreate.email" >
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Enter valid email
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email is <strong>requerid</strong>
+                </mat-error>
+              </mat-form-field>
+        </div>  
+    
+        <div class="row">
+            <mat-label>Start Date:*</mat-label>
+            <mat-form-field appearance="fill" >
+                <input matInput [matDatepicker]="pickerAdd" name="dateAdd" [(ngModel)]="clientCreate.dateAdd" required >
+                <mat-datepicker-toggle matIconSuffix [for]="pickerAdd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerAdd></mat-datepicker>     
+                <mat-error *ngIf="requeridoFormControl.hasError('required')">
+                    Start Date is <strong>requerid</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>  
+    
+        <div class="row">
+            <mat-label>End Date</mat-label>
+            <mat-form-field appearance="fill" >                
+                <input matInput [matDatepicker]="pickerEnd" name="dateEnd" [(ngModel)]="clientCreate.dateEnd" >
+                <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEnd></mat-datepicker> 
+            </mat-form-field>
+        </div>  
+
+    </div>
+    
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="submit" [mat-dialog-close]="false"> Cancel </button>
+        <button mat-raised-button color="primary" type="submit" (click)="addClient()" 
+        [disabled]="!clientCreate.names || !clientCreate.email || !clientCreate.phone || !clientCreate.dateAdd
+                         || (emailFormControl.hasError('email'))">
+        Ok
+        </button>
+    </div>    
+
+</form>
